@@ -12,7 +12,8 @@
 ```javascript
 
     var express = require('express');
-    var ElasticsearchStore = require('connect-elasticsearch')(express);
+    var session = require('express-session');
+    var ElasticsearchStore = require('connect-elasticsearch')(session);
 
     var app = express();
 
