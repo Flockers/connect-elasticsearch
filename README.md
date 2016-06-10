@@ -12,7 +12,9 @@
 ```javascript
 
     var express = require('express');
-    var ElasticsearchStore = require('connect-elasticsearch')(express);
+    var session = require('express-session');
+    var elasticsearch = require('elasticsearch');
+    var ElasticsearchStore = require('connect-elasticsearch')(session);
 
     var app = express();
 
@@ -22,9 +24,9 @@
 
     app.use(express.session({
       secret: 's3333cr3t!',
-      store: new ElasticsearchStore({
+      store: new ElasticsearchStore(new elasticsearch.Client({
         hosts: [ '192.168.26.129:9200' ]
-      })
+      }))
     }));
 
     app.get('/', function(req, res){
